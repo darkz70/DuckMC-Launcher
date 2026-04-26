@@ -20,54 +20,45 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
+
+        resValue("string", "app_version", versionName)
+        resValue("string", "curse_api_key", curseApiKey.toString())
+        resValue("string", "oauth_api_key", oauthApiKey.toString())
     }
 
     signingConfigs {
         create("FCLKey") {
-            storeFile = file("../key-store.jks")
+            storeFile = file("./key-store.jks")
             storePassword = pwd
             keyAlias = "FCL-Key"
             keyPassword = pwd
         }
 
         create("FCLDebugKey") {
-            storeFile = file("../debug-key.jks")
+            storeFile = file("./debug-key.jks")
             storePassword = "FCL-Debug"
             keyAlias = "FCL-Debug"
             keyPassword = "FCL-Debug"
         }
     }
 
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("debug")
+        }
     }
 
     applicationVariants.all {
         outputs.all {
-            val appName = "DuckMC-Launcher"
-            val versionName = versionName ?: "1.0"
             @Suppress("UNCHECKED_CAST")
             (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl)
-                .outputFileName = "${appName}-v${versionName}.apk"
+                .outputFileName = "DuckMC-Launcher-v${versionName}.apk"
         }
     }
 }
 
-    defaultConfig {
-        applicationId = "com.duckmc.launcher"
-        minSdk = 26
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0
-        }
-    }
-}
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-             signingConfig = signingConfigs.getByName("debug")
-        }
         
         configureEach {
             resValue("string", "app_version", defaultConfig.versionName.toString())
