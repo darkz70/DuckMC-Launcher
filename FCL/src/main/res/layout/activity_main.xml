@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:transitionName="background"
+    android:background="@color/dark_bg"
     tools:context=".activity.MainActivity">
 
     <TextureView
@@ -18,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <!-- LEFT MENU - Dark sidebar with yellow accents -->
+    <!-- LEFT MENU - Vertical icon sidebar -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/left_menu"
         android:layout_width="wrap_content"
@@ -54,7 +55,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/home" />
 
-        <!-- DOWNLOAD (Download Hub) -->
+        <!-- DOWNLOAD -->
         <com.tungsten.fcllibrary.component.view.FCLMenuView
             android:id="@+id/download"
             android:layout_width="wrap_content"
@@ -107,7 +108,154 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- RIGHT MENU - Dark with yellow buttons -->
+    <!-- CENTER MENU - 2x3 Grid with large yellow buttons -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/center_menu"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="@color/dark_bg"
+        app:layout_constraintEnd_toStartOf="@id/right_menu"
+        app:layout_constraintStart_toEndOf="@+id/left_menu">
+
+        <!-- Grid Container -->
+        <GridLayout
+            android:id="@+id/menu_grid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="3"
+            android:padding="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.5">
+
+            <!-- HOME BUTTON -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_home"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="10dp"
+                android:text="@string/home"
+                android:textSize="16sp"
+                android:textColor="@color/dark_text"
+                android:textStyle="bold"
+                app:backgroundTint="@color/yellow_accent"
+                app:icon="@drawable/ic_baseline_home_24"
+                app:iconSize="48dp"
+                app:iconGravity="top"
+                app:cornerRadius="12dp" />
+
+            <!-- MANAGE BUTTON -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_manage"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="10dp"
+                android:text="@string/manage"
+                android:textSize="16sp"
+                android:textColor="@color/dark_text"
+                android:textStyle="bold"
+                app:backgroundTint="@color/yellow_accent"
+                app:icon="@drawable/ic_baseline_build_24"
+                app:iconSize="48dp"
+                app:iconGravity="top"
+                app:cornerRadius="12dp" />
+
+            <!-- DOWNLOAD BUTTON -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_download"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="10dp"
+                android:text="@string/download"
+                android:textSize="16sp"
+                android:textColor="@color/dark_text"
+                android:textStyle="bold"
+                app:backgroundTint="@color/yellow_accent"
+                app:icon="@drawable/ic_baseline_cloud_download_24"
+                app:iconSize="48dp"
+                app:iconGravity="top"
+                app:cornerRadius="12dp" />
+
+            <!-- SERVERS BUTTON -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_servers"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="10dp"
+                android:text="@string/multiplayer"
+                android:textSize="16sp"
+                android:textColor="@color/dark_text"
+                android:textStyle="bold"
+                app:backgroundTint="@color/yellow_accent"
+                app:icon="@drawable/ic_outline_account_tree_24"
+                app:iconSize="48dp"
+                app:iconGravity="top"
+                app:cornerRadius="12dp" />
+
+            <!-- PROFILE BUTTON -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_profile"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="10dp"
+                android:text="@string/profile"
+                android:textSize="16sp"
+                android:textColor="@color/dark_text"
+                android:textStyle="bold"
+                app:backgroundTint="@color/yellow_accent"
+                app:icon="@drawable/ic_baseline_person_24"
+                app:iconSize="48dp"
+                app:iconGravity="top"
+                app:cornerRadius="12dp" />
+
+            <!-- SETTINGS BUTTON -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_settings"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_row="2"
+                android:layout_column="1"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="10dp"
+                android:text="@string/settings"
+                android:textSize="16sp"
+                android:textColor="@color/dark_text"
+                android:textStyle="bold"
+                app:backgroundTint="@color/yellow_accent"
+                app:icon="@drawable/ic_baseline_settings_24"
+                app:iconSize="48dp"
+                app:iconGravity="top"
+                app:cornerRadius="12dp" />
+
+        </GridLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- RIGHT MENU - Account and Launch -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/right_menu"
         android:layout_width="0dp"
@@ -281,14 +429,6 @@
             app:layout_constraintStart_toEndOf="@id/version" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- CENTER CONTENT AREA -->
-    <com.tungsten.fcllibrary.component.view.FCLUILayout
-        android:id="@+id/ui_layout"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toStartOf="@id/right_menu"
-        app:layout_constraintStart_toEndOf="@+id/left_menu" />
 
     <!-- DYNAMIC ISLAND / TITLE -->
     <com.tungsten.fcllibrary.component.view.FCLDynamicIsland
