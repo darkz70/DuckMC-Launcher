@@ -52,13 +52,15 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("FCLKey")
+             signingConfig = signingConfigs.getByName("debug")
         }
-        create("fordebug") {
-            initWith(getByName("debug"))
-            applicationIdSuffix = ".debug"
-            signingConfig = signingConfigs.getByName("FCLDebugKey")
-        }
+        
+getByName("debug") {
+    storeFile = file("${System.getProperty("user.home")}/.android/debug.keystore")
+    storePassword = "android"
+    keyAlias = "androiddebugkey"
+    keyPassword = "android"
+}
         configureEach {
             resValue("string", "app_version", defaultConfig.versionName.toString())
             resValue("string", "curse_api_key", curseApiKey.toString())
