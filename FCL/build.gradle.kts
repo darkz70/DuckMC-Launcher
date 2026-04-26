@@ -40,13 +40,28 @@ android {
             keyPassword = "FCL-Debug"
         }
     }
+android {
+    namespace = "com.duckmc.launcher"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.tungsten.fcl"
-        minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 1302
-        versionName = "1.3.0.2"
+        applicationId = "com.duckmc.launcher"
+        minSdk = 26
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    applicationVariants.all {
+        outputs.all {
+            val appName = "DuckMC-Launcher"
+            val versionName = versionName ?: "1.0"
+            @Suppress("UNCHECKED_CAST")
+            (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl)
+                .outputFileName = "${appName}-v${versionName}.apk"
+        }
+    }
+}
     }
 
     buildTypes {
