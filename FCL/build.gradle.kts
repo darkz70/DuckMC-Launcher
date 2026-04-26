@@ -12,35 +12,6 @@ plugins {
 }
 
 android {
-    namespace = "com.tungsten.fcl"
-    compileSdk = libs.versions.compileSdk.get().toInt()
-
-    var localProperty: Properties? = null
-    if (file("${rootDir}/local.properties").exists()) {
-        localProperty = Properties()
-        file("${rootDir}/local.properties").inputStream().use { localProperty.load(it) }
-    }
-    val pwd = System.getenv("FCL_KEYSTORE_PASSWORD") ?: localProperty?.getProperty("pwd")
-    val curseApiKey = System.getenv("CURSE_API_KEY") ?: localProperty?.getProperty("curse.api.key")
-    val oauthApiKey = System.getenv("OAUTH_API_KEY") ?: localProperty?.getProperty("oauth.api.key")
-    if (localProperty != null && localProperty.getProperty("arch", "all") == "arm64")
-        System.setProperty("arch", "arm64")
-
-    signingConfigs {
-        create("FCLKey") {
-            storeFile = file("../key-store.jks")
-            storePassword = pwd
-            keyAlias = "FCL-Key"
-            keyPassword = pwd
-        }
-        create("FCLDebugKey") {
-            storeFile = file("../debug-key.jks")
-            storePassword = "FCL-Debug"
-            keyAlias = "FCL-Debug"
-            keyPassword = "FCL-Debug"
-        }
-    }
-android {
     namespace = "com.duckmc.launcher"
     compileSdk = 34
 
@@ -52,6 +23,24 @@ android {
         versionName = "1.0"
     }
 
+    signingConfigs {
+        create("FCLKey") {
+            storeFile = file("../key-store.jks")
+            storePassword = pwd
+            keyAlias = "FCL-Key"
+            keyPassword = pwd
+        }
+
+        create("FCLDebugKey") {
+            storeFile = file("../debug-key.jks")
+            storePassword = "FCL-Debug"
+            keyAlias = "FCL-Debug"
+            keyPassword = "FCL-Debug"
+        }
+    }
+
+    }
+
     applicationVariants.all {
         outputs.all {
             val appName = "DuckMC-Launcher"
@@ -59,6 +48,16 @@ android {
             @Suppress("UNCHECKED_CAST")
             (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl)
                 .outputFileName = "${appName}-v${versionName}.apk"
+        }
+    }
+}
+
+    defaultConfig {
+        applicationId = "com.duckmc.launcher"
+        minSdk = 26
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0.0
         }
     }
 }
