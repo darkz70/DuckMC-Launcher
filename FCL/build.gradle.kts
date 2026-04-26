@@ -43,19 +43,18 @@ android {
         }
     }
 
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("debug")
-        }
+buildTypes {
+    getByName("release") {
+        isMinifyEnabled = false
+        signingConfig = signingConfigs.getByName("debug")
     }
+}
 
-    applicationVariants.all {
-        outputs.all {
-            @Suppress("UNCHECKED_CAST")
-            (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl)
-                .outputFileName = "DuckMC-Launcher-v${versionName}.apk"
-        }
+applicationVariants.all {
+    outputs.all {
+        @Suppress("UNCHECKED_CAST")
+        (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl)
+            .outputFileName = "DuckMC-Launcher-v${versionName}.apk"
     }
 }
 
