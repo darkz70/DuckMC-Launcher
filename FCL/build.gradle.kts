@@ -113,6 +113,10 @@ android {
         buildConfig = true
     }
 
+lint {
+    checkReleaseBuilds = false
+    abortOnError = false
+}
     splits {
         val arch = System.getProperty("arch", "all")
         if (arch != "all") {
@@ -136,10 +140,6 @@ android {
     }
 }
 
-lint {
-    checkReleaseBuilds = false
-    abortOnError = false
-}
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar", "*.aar"))))
     implementation(project(":FCLCore"))
