@@ -50,14 +50,6 @@ buildTypes {
     }
 }
 
-applicationVariants.all {
-    outputs.all {
-        @Suppress("UNCHECKED_CAST")
-        (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl)
-            .outputFileName = "DuckMC-Launcher-v${versionName}.apk"
-    }
-}
-
         
         configureEach {
             resValue("string", "app_version", defaultConfig.versionName.toString())
@@ -72,7 +64,7 @@ applicationVariants.all {
                 if (output is com.android.build.api.variant.impl.VariantOutputImpl) {
                     (output.getFilter(ABI)?.identifier ?: "all").let { abi ->
                         output.outputFileName =
-                            "FCL-${variant.buildType}-${defaultConfig.versionName}-${abi}.apk"
+    "DuckMC-Launcher-v${defaultConfig.versionName}-${abi}.apk"
                     }
 
                     val variantName = variant.name.replaceFirstChar { it.uppercaseChar() }
