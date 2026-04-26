@@ -19,287 +19,190 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <!-- TOP BAR - Language selector and menu -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/top_bar"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@color/dark_bg_secondary"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
+    <!-- TOP RIGHT - Language Selector -->
+    <Spinner
+        android:id="@+id/language_spinner"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/yellow_accent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- LEFT MENU - Horizontal rows (Collapsible) -->
+    <LinearLayout
+        android:id="@+id/left_menu"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:background="@color/dark_bg"
+        android:padding="10dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Hamburger Menu Button (Left) -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/menu_toggle"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:text="☰"
-            android:textSize="24sp"
-            android:textColor="@color/yellow_accent"
-            app:backgroundTint="@color/dark_bg"
-            app:cornerRadius="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+        <!-- ROW 1: HOME | MANAGE -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
 
-        <!-- Language Selector (Right) -->
-        <Spinner
-            android:id="@+id/language_spinner"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:background="@color/yellow_accent"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/menu_home"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="🏠 Home"
+                android:textSize="12sp"
+                android:textColor="@color/dark_text"
+                app:backgroundTint="@color/yellow_accent"
+                app:cornerRadius="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/menu_manage"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="📋 Manage"
+                android:textSize="12sp"
+                android:textColor="@color/dark_text"
+                app:backgroundTint="@color/yellow_accent"
+                app:cornerRadius="8dp" />
+
+        </LinearLayout>
+
+        <!-- ROW 2: DOWNLOAD | SERVERS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/menu_download"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="📥 Download"
+                android:textSize="12sp"
+                android:textColor="@color/dark_text"
+                app:backgroundTint="@color/yellow_accent"
+                app:cornerRadius="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/menu_servers"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="🖥️ Servers"
+                android:textSize="12sp"
+                android:textColor="@color/dark_text"
+                app:backgroundTint="@color/yellow_accent"
+                app:cornerRadius="8dp" />
+
+        </LinearLayout>
+
+        <!-- ROW 3: PROFILE | SETTINGS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/menu_profile"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="👤 Profile"
+                android:textSize="12sp"
+                android:textColor="@color/dark_text"
+                app:backgroundTint="@color/yellow_accent"
+                app:cornerRadius="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/menu_settings"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="⚙️ Settings"
+                android:textSize="12sp"
+                android:textColor="@color/dark_text"
+                app:backgroundTint="@color/yellow_accent"
+                app:cornerRadius="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- HAMBURGER MENU BUTTON - Toggle left menu -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menu_toggle"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:text="☰"
+        android:textSize="20sp"
+        android:textColor="@color/dark_text"
+        android:padding="0dp"
+        app:backgroundTint="@color/yellow_accent"
+        app:cornerRadius="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- CENTER - Launch Button -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/center_launch"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/dark_bg"
+        app:layout_constraintEnd_toStartOf="@id/right_menu"
+        app:layout_constraintStart_toEndOf="@+id/left_menu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- LARGE LAUNCH BUTTON -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_launch"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:text="PLAY"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_text"
+            app:backgroundTint="@color/yellow_accent"
+            app:cornerRadius="100dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- LEFT MENU - Collapsible (Hidden by default) -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/left_menu"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
-        android:background="@color/dark_bg"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:elevation="100dp"
-        android:paddingStart="5dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="5dp"
-        android:paddingBottom="10dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_bar">
-
-        <!-- HOME -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Home"
-            android:textSize="12sp"
-            android:textColor="@color/dark_text"
-            app:backgroundTint="@color/yellow_accent"
-            app:cornerRadius="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- MANAGE -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/manage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Manage"
-            android:textSize="12sp"
-            android:textColor="@color/dark_text"
-            app:backgroundTint="@color/yellow_accent"
-            app:cornerRadius="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home" />
-
-        <!-- DOWNLOAD -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/download"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Download"
-            android:textSize="12sp"
-            android:textColor="@color/dark_text"
-            app:backgroundTint="@color/yellow_accent"
-            app:cornerRadius="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/manage" />
-
-        <!-- SERVERS -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/multiplayer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Servers"
-            android:textSize="12sp"
-            android:textColor="@color/dark_text"
-            app:backgroundTint="@color/yellow_accent"
-            app:cornerRadius="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/download" />
-
-        <!-- PROFILE -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Profile"
-            android:textSize="12sp"
-            android:textColor="@color/dark_text"
-            app:backgroundTint="@color/yellow_accent"
-            app:cornerRadius="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/multiplayer" />
-
-        <!-- SETTINGS -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/setting"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Settings"
-            android:textSize="12sp"
-            android:textColor="@color/dark_text"
-            app:backgroundTint="@color/yellow_accent"
-            app:cornerRadius="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- CENTER MENU - 2x3 Grid with LinearLayout -->
-    <LinearLayout
-        android:id="@+id/center_menu"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:background="@color/dark_bg"
-        android:gravity="center"
-        android:padding="20dp"
-        app:layout_constraintEnd_toStartOf="@id/right_menu"
-        app:layout_constraintStart_toEndOf="@+id/left_menu"
-        app:layout_constraintTop_toBottomOf="@id/top_bar"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <!-- ROW 1: HOME + MANAGE -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_margin="10dp">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_home"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:text="Home"
-                android:textSize="14sp"
-                android:textColor="@color/dark_text"
-                android:textStyle="bold"
-                app:backgroundTint="@color/yellow_accent"
-                app:cornerRadius="12dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_manage"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:text="Manage"
-                android:textSize="14sp"
-                android:textColor="@color/dark_text"
-                android:textStyle="bold"
-                app:backgroundTint="@color/yellow_accent"
-                app:cornerRadius="12dp" />
-
-        </LinearLayout>
-
-        <!-- ROW 2: DOWNLOAD + SERVERS -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_margin="10dp">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_download"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:text="Download"
-                android:textSize="14sp"
-                android:textColor="@color/dark_text"
-                android:textStyle="bold"
-                app:backgroundTint="@color/yellow_accent"
-                app:cornerRadius="12dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_servers"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:text="Servers"
-                android:textSize="14sp"
-                android:textColor="@color/dark_text"
-                android:textStyle="bold"
-                app:backgroundTint="@color/yellow_accent"
-                app:cornerRadius="12dp" />
-
-        </LinearLayout>
-
-        <!-- ROW 3: PROFILE + SETTINGS -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_margin="10dp">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_profile"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:text="Profile"
-                android:textSize="14sp"
-                android:textColor="@color/dark_text"
-                android:textStyle="bold"
-                app:backgroundTint="@color/yellow_accent"
-                app:cornerRadius="12dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_settings"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:text="Settings"
-                android:textSize="14sp"
-                android:textColor="@color/dark_text"
-                android:textStyle="bold"
-                app:backgroundTint="@color/yellow_accent"
-                app:cornerRadius="12dp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
     <!-- RIGHT MENU - Account and Launch -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/right_menu"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:background="@color/dark_bg_secondary"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:elevation="100dp"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.25"
-        app:layout_constraintTop_toBottomOf="@id/top_bar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintWidth_percent="0.25">
 
         <!-- ACCOUNT SECTION -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -334,7 +237,7 @@
                 android:layout_marginTop="4dp"
                 android:singleLine="true"
                 android:text="Player"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="@color/yellow_accent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -348,7 +251,7 @@
                 android:layout_marginTop="2dp"
                 android:singleLine="true"
                 android:text="Add Account"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textColor="@color/text_secondary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -361,11 +264,11 @@
             android:id="@+id/start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginBottom="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:padding="5dp"
+            android:padding="3dp"
             app:layout_constraintBottom_toTopOf="@id/version"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -376,6 +279,7 @@
                 android:layout_height="wrap_content"
                 android:text="Launch"
                 android:textStyle="bold"
+                android:textSize="12sp"
                 android:textColor="@color/yellow_accent"
                 app:layout_constraintBottom_toTopOf="@id/version_name"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -384,8 +288,8 @@
 
             <ImageView
                 android:id="@+id/icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:background="@color/yellow_accent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -396,11 +300,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
-                android:layout_marginEnd="31dp"
+                android:layout_marginEnd="25dp"
                 android:ellipsize="marquee"
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="1.21.1"
+                android:textSize="10sp"
                 android:textColor="@color/text_secondary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -414,19 +319,17 @@
             android:id="@+id/version"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="6dp"
             android:text="Manage"
             android:textAllCaps="false"
+            android:textSize="10sp"
             android:textColor="@color/dark_text"
             app:backgroundTint="@color/yellow_accent"
-            app:autoSizeMaxTextSize="14sp"
-            app:autoSizeMinTextSize="8sp"
-            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/jar"
-            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintHeight_percent="0.08"
             app:layout_constraintStart_toStartOf="parent" />
 
         <!-- JAR EXECUTE BUTTON - Yellow -->
@@ -434,19 +337,17 @@
             android:id="@+id/jar"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="6dp"
             android:text="Play"
             android:textAllCaps="false"
+            android:textSize="10sp"
             android:textColor="@color/dark_text"
             app:backgroundTint="@color/yellow_accent"
-            app:autoSizeMaxTextSize="14sp"
-            app:autoSizeMinTextSize="8sp"
-            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintHeight_percent="0.08"
             app:layout_constraintStart_toEndOf="@id/version" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
