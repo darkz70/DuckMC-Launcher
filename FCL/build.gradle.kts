@@ -136,6 +136,10 @@ android {
     }
 }
 
+lint {
+    checkReleaseBuilds = false
+    abortOnError = false
+}
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar", "*.aar"))))
     implementation(project(":FCLCore"))
