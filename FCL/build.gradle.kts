@@ -58,14 +58,19 @@ buildTypes {
         }
     }
 
-    androidComponents {
-        onVariants { variant ->
-            variant.outputs.forEach { output ->
-                if (output is com.android.build.api.variant.impl.VariantOutputImpl) {
-                    (output.getFilter(ABI)?.identifier ?: "all").let { abi ->
-                        output.outputFileName =
-    "DuckMC-Launcher-v${defaultConfig.versionName}-${abi}.apk"
-                    }
+androidComponents {
+    onVariants { variant ->
+        variant.outputs.forEach { output ->
+            val abi = output.filters
+                .find { it.filterType.name == "ABI" }
+                ?.identifier ?: "universal"
+
+            output.outputFileName.set(
+                "FCL-${variant.buildType}-${defaultConfig.versionName}-$abi.apk"
+            )
+        }
+    }
+}
 
                     val variantName = variant.name.replaceFirstChar { it.uppercaseChar() }
                     afterEvaluate {
