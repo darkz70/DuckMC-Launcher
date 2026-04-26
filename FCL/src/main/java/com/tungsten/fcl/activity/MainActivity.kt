@@ -225,10 +225,14 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
                     home.setOnSelectListener(this@MainActivity)
                     manage.setOnSelectListener(this@MainActivity)
                     download.setOnSelectListener(this@MainActivity)
+                    manage_download.setOnSelectListener(this@MainActivity)
                     controller.setOnSelectListener(this@MainActivity)
                     multiplayer.setOnSelectListener(this@MainActivity)
                     setting.setOnSelectListener(this@MainActivity)
                     home.setSelected(true)
+                    menu_toggle.setOnClickListener {
+                        leftMenu.visibility = if (leftMenu.visibility == View.GONE) View.VISIBLE else View.GONE
+                    }
                     home.setOnLongClickListener {
                         shareLog()
                         true
@@ -348,6 +352,11 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
                 }
 
                 download -> {
+                    title.setTextWithAnim(getString(R.string.download))
+                    uiManager.switchUI(uiManager.downloadUI)
+                }
+
+                manage_download -> {
                     title.setTextWithAnim(getString(R.string.download))
                     uiManager.switchUI(uiManager.downloadUI)
                 }

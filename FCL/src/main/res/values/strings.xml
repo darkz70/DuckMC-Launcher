@@ -31,9 +31,11 @@
     <string name="launch_mode">Launch mode</string>
     <string name="manage">Manage</string>
     <string name="download">Download</string>
+    <string name="manage_download">Download Hub</string>
     <string name="controller">Controller</string>
     <string name="multiplayer">Multiplayer</string>
     <string name="setting">Setting</string>
+    <string name="menu">Menu</string>
     
     <string name="about">About</string>
     <string name="about_launcher" translatable="false">DuckMC Launcher</string>
