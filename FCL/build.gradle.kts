@@ -12,7 +12,7 @@ plugins {
 }
 
 android {
-    namespace = "com.duckmc.fcl"
+    namespace = "com.tungsten.fcl"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     var localProperty: Properties? = null
