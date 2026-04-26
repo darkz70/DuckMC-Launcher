@@ -55,12 +55,6 @@ android {
              signingConfig = signingConfigs.getByName("debug")
         }
         
-getByName("debug") {
-    storeFile = file("${System.getProperty("user.home")}/.android/debug.keystore")
-    storePassword = "android"
-    keyAlias = "androiddebugkey"
-    keyPassword = "android"
-}
         configureEach {
             resValue("string", "app_version", defaultConfig.versionName.toString())
             resValue("string", "curse_api_key", curseApiKey.toString())
