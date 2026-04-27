@@ -75,7 +75,7 @@ android {
     androidComponents {
         onVariants { variant ->
             variant.outputs.forEach { output ->
-                ifdefaultConfig {
+                defaultConfig {
         applicationId = "com.darkz.duckmc"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
