@@ -21,7 +21,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/left_menu"
     android:layout_width="wrap_content"
-    android:layout_height="5dp"
+    android:layout_height="0dp"
     android:visibility="gone"
         android:background="@drawable/bg_game_menu"
         android:clipChildren="false"
