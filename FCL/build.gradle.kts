@@ -73,27 +73,28 @@ android {
     }
 
     androidComponents {
-        onVariants { variant ->
-            variant.outputs.forEach { output ->
-                defaultConfig {
-        applicationId = "com.darkz.duckmc"
-        minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 1000
-        versionName = "1.0.0.0" (output is com.android.build.api.variant.impl.VariantOutputImpl) {
-                    (output.getFilter(ABI)?.identifier ?: "all").let { abi ->
-                        output.outputFileName =
-                            "FCL-${variant.buildType}-${defaultConfig.versionName}-${abi}.apk"
-                    }
+    onVariants { variant ->
+        variant.outputs.forEach { output ->
+            val abi = output.filters
+                .find { it.filterType.name == "ABI" }
+                ?.identifier ?: "all"
 
-                    val variantName = variant.name.replaceFirstChar { it.uppercaseChar() }
-                    afterEvaluate {
-                        val task =
-                            tasks.named("merge${variantName}Assets").get() as MergeSourceSetFolders
-                        task.doLast {
-                            val arch = System.getProperty("arch", "all")
-                            val assetsDir = task.outputDir.get().asFile
-                            val jreList = listOf("jre8", "jre17", "jre21", "jre25")
+            output.outputFileName.set(
+                "DuckMC-${variant.buildType}-${variant.versionName.orNull ?: "1.0.0.0"}-$abi.apk"
+            )
+        }
+    }
+}
+
+           defaultConfig {
+    applicationId = "com.darkz.duckmc"
+    minSdk = libs.versions.minSdk.get().toInt()
+    targetSdk = libs.versions.targetSdk.get().toInt()
+    versionCode = 1000
+    versionName = "1.0.0.0"
+}
+
+val jreList = listOf("jre8", "jre17", "jre21", "jre25")
                             println("arch:$arch")
                             jreList.forEach { jre ->
                                 val runtimeDir = "$assetsDir/app_runtime/java/$jre"
