@@ -12,7 +12,7 @@ plugins {
 }
 
 android {
-    namespace = "com.duckmc.fcl"
+    namespace = "com.tungsten.fcl"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     var localProperty: Properties? = null
@@ -58,12 +58,7 @@ android {
         }
     }
 
-    defaultConfig {
-        applicationId = "com.duckmc.fcl"
-        minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 1302
-        versionName = "1.3.0.2"
+    
     }
 
     buildTypes {
@@ -86,7 +81,12 @@ android {
     androidComponents {
         onVariants { variant ->
             variant.outputs.forEach { output ->
-                if (output is com.android.build.api.variant.impl.VariantOutputImpl) {
+                ifdefaultConfig {
+        applicationId = "com.darkz.duckmc"
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        versionCode = 1000
+        versionName = "1.0.0.0" (output is com.android.build.api.variant.impl.VariantOutputImpl) {
                     (output.getFilter(ABI)?.identifier ?: "all").let { abi ->
                         output.outputFileName =
                             "FCL-${variant.buildType}-${defaultConfig.versionName}-${abi}.apk"
