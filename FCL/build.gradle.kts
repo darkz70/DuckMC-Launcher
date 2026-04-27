@@ -39,9 +39,6 @@ android {
         }
     }
 
-    
-    
-    }
 
     buildTypes {
         getByName("release") {
@@ -54,11 +51,6 @@ android {
             } else {
                 signingConfigs.getByName("debug")
             }
-        }
-
-        getByName("release") {
-            isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("FCLKey")
         }
 
         create("fordebug") {
