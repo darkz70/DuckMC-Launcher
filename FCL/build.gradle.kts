@@ -23,15 +23,32 @@ android {
     val pwd = System.getenv("FCL_KEYSTORE_PASSWORD") ?: localProperty?.getProperty("pwd")
     val curseApiKey = System.getenv("CURSE_API_KEY") ?: localProperty?.getProperty("curse.api.key")
     val oauthApiKey = System.getenv("OAUTH_API_KEY") ?: localProperty?.getProperty("oauth.api.key")
-    if (localProperty != null && localProperty.getProperty("arch", "all") == "arm64")
+    if (localProperty != null && localProperty.getProperty("arch", "Хаузall") == "arm64")
         System.setProperty("arch", "arm64")
 
     signingConfigs {
-        create("FCLKey") {
-            storeFile = file("../key-store.jks")
-            storePassword = pwd
-            keyAlias = "FCL-Key"
-            keyPassword = pwd
+        create("debug") {
+            val customKey = rootProject.file("debug-key.jks")
+
+            if (customKey.exists()) {
+                storeFile = customKey
+                storePassword = "android"
+                keyAlias = "androiddebugkey"
+                keyPassword = "android"
+            }
+        }
+    }
+
+    buildTypes {
+        getByName("debug") {
+            signingConfig = if (rootProject.file("debug-key.jks").exists()) {
+                signingConfigs.getByName("FCLDebugKey")
+            } else {
+                signingConfigs.getByName("debug")
+            }
+        }
+    }
+}
         }
         getByName("debug") {
             storeFile = file("../debug-key.jks")
