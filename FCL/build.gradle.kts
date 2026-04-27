@@ -39,8 +39,31 @@ android {
         }
     }
 
+    
+    
+    }
+
     buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("FCLKey")
+      buildTypes {
         getByName("debug") {
+            signingConfig = if (rootProject.file("debug-key.jks").exists()) {
+                signingConfigs.getByName("FCLDebugKey")
+            } else {
+                signingConfigs.getByName("debug")
+            }
+        }
+
+        getByName("release") {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("FCLKey")
+        }
+
+        create("fordebug") {
+            initWith(getByName("debug"))
+            applicationIdSuffix = ".debug"
             signingConfig = if (rootProject.file("debug-key.jks").exists()) {
                 signingConfigs.getByName("FCLDebugKey")
             } else {
@@ -49,27 +72,6 @@ android {
         }
     }
 }
-        }
-        getByName("debug") {
-            storeFile = file("../debug-key.jks")
-            storePassword = "FCL-Debug"
-            keyAlias = "FCL-Debug"
-            keyPassword = "FCL-Debug"
-        }
-    }
-
-    
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("FCLKey")
-        }
-        create("fordebug") {
-            initWith(getByName("debug"))
-            applicationIdSuffix = ".debug"
-            signingConfig = signingConfigs.getByName("FCLDebugKey")
         }
         configureEach {
             resValue("string", "app_version", defaultConfig.versionName.toString())
