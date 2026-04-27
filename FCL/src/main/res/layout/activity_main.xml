@@ -23,17 +23,22 @@
     android:layout_width="wrap_content"
     android:layout_height="0dp"
     android:visibility="gone"
-        android:background="@drawable/bg_game_menu"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:elevation="100dp"
-        android:paddingStart="5dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="5dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    android:background="@drawable/bg_game_menu"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:elevation="100dp"
+    android:paddingStart="5dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="5dp"
+    android:paddingBottom="10dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+    
+    <!-- Содержимое меню здесь -->
+    
+</androidx.constraintlayout.widget.ConstraintLayout>
+    
 
         <com.tungsten.fcllibrary.component.view.FCLMenuView
             android:id="@+id/home"
