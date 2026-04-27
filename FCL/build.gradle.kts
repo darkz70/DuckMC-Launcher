@@ -33,7 +33,7 @@ android {
             keyAlias = "FCL-Key"
             keyPassword = pwd
         }
-        create("FCLDebugKey") {
+        getByName("debug") {
             storeFile = file("../debug-key.jks")
             storePassword = "FCL-Debug"
             keyAlias = "FCL-Debug"
